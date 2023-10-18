@@ -4,13 +4,15 @@ const s3 = new aws.S3();
 
 exports.handler = async (event) => {
   try {
+    const { metadata } = JSON.parse(event.body);
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
     const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
 
     // Get image from S3
     const originalImage = await s3.getObject({ Bucket: bucket, Key: key }).promise();
-    console.log(originalImage);
+    console.log(originalImage.Metadata?.type);
+    console.log("🚀 ~ file: index.js:8 ~ exports.handler= ~ metadata:", metadata)
 
     const resizedImage = await sharp(originalImage.Body, { animated: true })
       .webp({ effort: 2, quality: 80 })
