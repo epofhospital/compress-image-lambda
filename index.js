@@ -19,7 +19,7 @@ exports.handler = async (event) => {
       .toBuffer();
 
     // Define new filename and metadata if needed
-    const targetKey = key.replace(/\.[^/.]+$/, "") + "_small.webp"; // change extension
+    const targetKey = key.replace(/\.[^/.]+$/, "") + "-thumbnail.webp"; // change extension
 
     // Upload the resized image back to S3
     await s3
