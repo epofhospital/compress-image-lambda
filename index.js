@@ -7,7 +7,7 @@ exports.handler = async (event) => {
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
     const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
-    console.log("🚀 ~ file: index.js:10 ~ exports.handler= ~ key:", key);
+    console.log("tttttttttt", key);
 
     // Get image from S3
     const originalImage = await s3.getObject({ Bucket: bucket, Key: key }).promise();
