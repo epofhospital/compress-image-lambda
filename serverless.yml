@@ -1,3 +1,6 @@
+# how to uses
+# turn on this file and uncomment serverless config in deploy_lambda.yml workflows
+
 service: compress-image
 
 provider:
