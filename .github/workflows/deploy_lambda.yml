@@ -36,17 +36,3 @@ jobs:
       - name: AWS Deploy
         run: |
           aws lambda update-function-code --function-name ${{ matrix.function-name }} --zip-file fileb://lambda_function_payload.zip
-
-      ## ci/cd by serverless
-      ## use this instead AWS CLI
-      ## pros => do not retrive function-name arn from aws, this auto create or update just set function name in serverless.yml
-      ## cons => very slow if compare the pipeline with AWS CLI
-      # - name: serverless deploy
-      #   uses: serverless/github-action@master
-      #   with:
-      #     args: deploy
-      #   env:
-      #     # SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-      #     # or if using AWS credentials directly
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
