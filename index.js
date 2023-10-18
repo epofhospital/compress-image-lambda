@@ -15,6 +15,7 @@ exports.handler = async (event) => {
     // Get image from S3
     const originalImage = await s3.getObject({ Bucket: bucket, Key: key }).promise();
     console.log(originalImage.Metadata?.type);
+    console.log(originalImage.Metadata);
     console.log("🚀 ~ file: index.js:8 ~ exports.handler= ~ metadata:", metadata);
 
     const resizedImage = await sharp(originalImage.Body, { animated: true })
