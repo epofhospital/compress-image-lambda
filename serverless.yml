@@ -8,4 +8,4 @@ provider:
 
 functions:
   _:
-    handler: index
+    handler: index.handler
