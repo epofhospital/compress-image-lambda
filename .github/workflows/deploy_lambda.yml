@@ -23,37 +23,25 @@ jobs:
       - name: Install dependencies
         run: npm install --platform=linux --arch=x64 sharp
 
-      # - name: serverless deploy
-      #   uses: serverless/github-action@master
-      #   with:
-      #     args: deploy
-      #   env:
-      #     # SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-      #     # or if using AWS credentials directly
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: serverless deploy
+        uses: serverless/github-action@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - name: zip Lambda Function
-        run: |
-          zip -r lambda_function_payload.zip .
-      - name: AWS Deploy
-        run: |
-          aws lambda update-function-code --function-name arn:aws:lambda:ap-southeast-1:581617270143:function:compress-image-prod-_ --zip-file fileb://lambda_function_payload.zip
+          args: deploy
+        env:
+          # SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          # or if using AWS credentials directly
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       # - name: Set up AWS CLI
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
       #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ${{ secrets.AWS_REGION }} # change to your desired AWS region
-
-      # - name: deploy
+      #     aws-region: ${{ secrets.AWS_REGION }}
+      # - name: zip Lambda Function
       #   run: |
       #     zip -r lambda_function_payload.zip .
-      #     aws lambda update-function-code --function-name compress-image --zip-file fileb://lambda_function_payload.zip
+      # - name: AWS Deploy
+      #   run: |
+      #     aws lambda update-function-code --function-name arn:aws:lambda:ap-southeast-1:581617270143:function:compress-image-prod-_ --zip-file fileb://lambda_function_payload.zip
