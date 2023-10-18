@@ -1,4 +1,4 @@
-service: compress-image-lambda
+service: compress-image
 
 provider:
   name: aws
