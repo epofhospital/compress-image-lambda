@@ -16,7 +16,6 @@ export const handler: Handler<S3Event> = async (event, context) => {
     for (const k in metadata) {
       if (typeof metadata[k] === "string") metadata[k] = decodeURIComponent(metadata[k]);
     }
-    console.log("test");
     const resizedImage = await sharp(originalImage.Body as Buffer, { animated: true })
       .webp({ effort: 2, quality: 80 })
       .resize(200, 200)
