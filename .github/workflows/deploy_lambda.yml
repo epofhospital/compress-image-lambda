@@ -26,10 +26,7 @@ jobs:
         run: npm install --platform=linux --arch=x64 sharp
 
       - name: Install dependencies2
-        run: npm install --save-dev @types/node
-
-      - name: Build
-        run: npm run build
+        run: npm install typescript --save-dev
 
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
