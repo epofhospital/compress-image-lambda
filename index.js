@@ -6,7 +6,7 @@ const s3 = new aws.S3();
 // import aws from "aws-sdk";
 // const s3 = new aws.S3();
 
-exports.handler = async (event: any) => {
+exports.handler = async (event) => {
   try {
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
@@ -20,7 +20,7 @@ exports.handler = async (event: any) => {
       if (typeof metadata[k] === "string") metadata[k] = decodeURIComponent(metadata[k]);
     }
 
-    const resizedImage = await sharp(originalImage.Body as Buffer, { animated: true })
+    const resizedImage = await sharp(originalImage.Body, { animated: true })
       .webp({ effort: 2, quality: 80 })
       .resize(200, 200)
       .toBuffer();
