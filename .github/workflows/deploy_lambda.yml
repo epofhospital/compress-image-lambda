@@ -26,7 +26,7 @@ jobs:
         run: npm install --platform=linux --arch=x64 sharp
 
       - name: Install dependencies2
-        run: npm ci
+        run: npm install --save-dev @types/node
 
       - name: Build
         run: npm run build
