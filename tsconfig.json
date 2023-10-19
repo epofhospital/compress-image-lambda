@@ -5,7 +5,6 @@
     "preserveConstEnums": true,
     "sourceMap": false,
     "module":"commonjs",
-    "outDir": "./dist",
     "moduleResolution":"node",
     "esModuleInterop": true, 
     "skipLibCheck": true,
@@ -13,5 +12,5 @@
     "isolatedModules": true, 
     "types": ["node"],
   },
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "exclude": ["node_modules"]
 }
