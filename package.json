@@ -2,6 +2,7 @@
   "name": "compress-image-lambda",
   "version": "1.0.0",
   "description": "",
+  "type": "module", 
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +12,8 @@
   "dependencies": {
     "aws-sdk": "^2.1475.0",
     "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
   }
 }
