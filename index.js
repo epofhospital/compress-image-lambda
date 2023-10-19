@@ -18,6 +18,9 @@ exports.handler = async (event) => {
     console.log(typeof encodeURIComponent(originalImage.Metadata?.resize));
     console.log(originalImage.Metadata);
     console.log(originalImage.Metadata?.json);
+    console.log(encodeURIComponent(originalImage.Metadata?.json));
+    console.log(JSON.parse(encodeURIComponent(originalImage.Metadata?.json)));
+    console.log(JSON.parse(encodeURIComponent(originalImage.Metadata?.json)).resize);
     console.log(JSON.parse(originalImage.Metadata?.json));
     console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
     console.log(decodeURIComponent(originalImage.Metadata['article-thumbnail']));
