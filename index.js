@@ -4,28 +4,32 @@ const s3 = new aws.S3();
 
 exports.handler = async (event) => {
   try {
-    let metadata;
-    if (event.body) {
-      metadata = JSON.parse(event.body).metadata;
-    }
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
     const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
 
     // Get image from S3
     const originalImage = await s3.getObject({ Bucket: bucket, Key: key }).promise();
-    console.log(typeof originalImage.Metadata?.resize);
-    console.log(typeof encodeURIComponent(originalImage.Metadata?.resize));
-    console.log(originalImage.Metadata);
-    console.log(originalImage.Metadata?.json);
-    console.log(JSON.parse(originalImage.Metadata?.json));
-    console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
-    console.log(encodeURIComponent(originalImage.Metadata?.json));
-    console.log(JSON.parse(encodeURIComponent(originalImage.Metadata?.json)).resize);
-    console.log(JSON.parse(originalImage.Metadata?.json));
-    console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
-    console.log(decodeURIComponent(originalImage.Metadata['article-thumbnail']));
-    console.log("🚀 ~ file: index.js:8 ~ exports.handler= ~ metadata:", metadata);
+
+    const metadata = originalImage.Metadata?.json && JSON.parse(originalImage.Metadata?.json);
+
+    for (const k in metadata) {
+      if (typeof metadata[k] === "string") metadata[k] = decodeURIComponent(metadata[k]);
+    }
+
+    console.log(metadata);
+    // console.log(typeof encodeURIComponent(originalImage.Metadata?.resize));
+    // console.log(originalImage.Metadata);
+    // console.log(originalImage.Metadata?.json);
+    // console.log(JSON.parse(originalImage.Metadata?.json));
+    // console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
+    // console.log(encodeURIComponent(originalImage.Metadata?.json));
+    // console.log(JSON.parse(encodeURIComponent(originalImage.Metadata?.json)).resize);
+    // console.log(JSON.parse(originalImage.Metadata?.json));
+    // console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
+    // console.log(decodeURIComponent(originalImage.Metadata["article-thumbnail"]));
+    // console.log("🚀 ~ file: index.js:8 ~ exports.handler= ~ metadata:", metadata);
+
 
     // let {resize, resizeName, resizeWithOriginal} = originalImage.Metadata;
     // if(originalImage.Metadata){
