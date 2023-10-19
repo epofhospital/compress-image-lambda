@@ -2,9 +2,10 @@
   "name": "compress-image-lambda",
   "version": "1.0.0",
   "description": "",
-  "type": "module", 
-  "main": "index.js",
+  "type": "module",
+  "main": "index.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,6 +15,7 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
+    "@types/node": "^20.8.7",
     "typescript": "^5.2.2"
   }
 }
