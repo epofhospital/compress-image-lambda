@@ -15,6 +15,7 @@ exports.handler = async (event) => {
     // Get image from S3
     const originalImage = await s3.getObject({ Bucket: bucket, Key: key }).promise();
     console.log(originalImage.Metadata?.resize);
+    console.log(encodeURIComponent(originalImage.Metadata?.resize));
     console.log(JSON.parse(originalImage.Metadata?.resize));
     console.log(originalImage.Metadata);
     console.log(decodeURIComponent(originalImage.Metadata['article-thumbnail']));
