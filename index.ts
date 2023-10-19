@@ -1,12 +1,9 @@
-// const sharp = require("sharp");
-// const aws = require("aws-sdk");
-// const s3 = new aws.S3();
-
+import { Handler, S3Event } from "aws-lambda";
 import sharp from "sharp";
 import aws from "aws-sdk";
 const s3 = new aws.S3();
 
-export const handler = async (event: any) => {
+export const handler: Handler<S3Event> = async (event, context) => {
   try {
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
@@ -19,7 +16,7 @@ export const handler = async (event: any) => {
     for (const k in metadata) {
       if (typeof metadata[k] === "string") metadata[k] = decodeURIComponent(metadata[k]);
     }
-
+    console.log("test");
     const resizedImage = await sharp(originalImage.Body as Buffer, { animated: true })
       .webp({ effort: 2, quality: 80 })
       .resize(200, 200)
