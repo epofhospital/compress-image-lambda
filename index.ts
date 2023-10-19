@@ -1,8 +1,12 @@
-import sharp from "sharp";
-import aws from "aws-sdk";
+const sharp = require("sharp");
+const aws = require("aws-sdk");
 const s3 = new aws.S3();
 
-export const handler = async (event: any) => {
+// import sharp from "sharp";
+// import aws from "aws-sdk";
+// const s3 = new aws.S3();
+
+exports.handler = async (event: any) => {
   try {
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
