@@ -19,7 +19,7 @@ exports.handler = async (event) => {
     console.log(originalImage.Metadata);
     console.log(originalImage.Metadata?.json);
     console.log(JSON.parse(originalImage.Metadata?.json));
-    console.log(JSON.parse(originalImage.Metadata?.json).resize);
+    console.log(typeof JSON.parse(originalImage.Metadata?.json).resize);
     console.log(encodeURIComponent(originalImage.Metadata?.json));
     console.log(JSON.parse(encodeURIComponent(originalImage.Metadata?.json)).resize);
     console.log(JSON.parse(originalImage.Metadata?.json));
