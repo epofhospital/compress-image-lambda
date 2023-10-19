@@ -34,8 +34,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: zip Lambda Function
+        # run: |
+        #   zip -r lambda_function_payload.zip .
         run: |
-          zip -r lambda_function_payload.zip .
+          cd dist
+          zip -r ../lambda_function_payload.zip .
       - name: AWS Deploy
         run: |
           aws lambda update-function-code --function-name ${{ matrix.function-name }} --zip-file fileb://lambda_function_payload.zip
