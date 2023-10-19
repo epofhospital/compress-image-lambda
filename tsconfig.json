@@ -6,6 +6,7 @@
     "noEmit": true,
     "sourceMap": false,
     "module":"commonjs",
+    "outDir": "./dist",
     "moduleResolution":"node",
     "esModuleInterop": true, 
     "skipLibCheck": true,
