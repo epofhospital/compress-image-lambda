@@ -6,7 +6,7 @@ const s3 = new aws.S3();
 // import aws from "aws-sdk";
 // const s3 = new aws.S3();
 
-exports.handler = async (event) => {
+exports.handler = async (event: any) => {
   try {
     // Get the object from the event and show its content type
     const bucket = event.Records[0].s3.bucket.name;
