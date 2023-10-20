@@ -40,7 +40,7 @@ export const handler: Handler<S3Event> = async (event, context) => {
           .putObject({
             Bucket: bucket,
             Key: resizeName ? key.slice(0, key.lastIndexOf("/") + 1) + resizeName : key,
-            Body: await resizedImage.resize(resize).toBuffer(),
+            Body: await resizedImage.clone().resize(resize).toBuffer(),
             ContentType: contentType, // specify the new content type
           })
           .promise();
@@ -53,7 +53,7 @@ export const handler: Handler<S3Event> = async (event, context) => {
       .putObject({
         Bucket: bucket,
         Key: key,
-        Body: await resizedImage.toBuffer(),
+        Body: await resizedImage.clone().toBuffer(),
         ContentType: contentType, // specify the new content type
       })
       .promise();
