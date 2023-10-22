@@ -41,7 +41,8 @@ export const handler: Handler<S3Event> = async (event, context) => {
             Bucket: bucket,
             Key: resizeName ? key.slice(0, key.lastIndexOf("/") + 1) + resizeName : key,
             Body: await resizedImage.clone().resize(resize).toBuffer(),
-            ContentType: contentType, // specify the new content type
+            ContentType: contentType,
+            CacheControl: 'public, max-age=0, must-revalidate',
           })
           .promise();
 
@@ -54,7 +55,8 @@ export const handler: Handler<S3Event> = async (event, context) => {
         Bucket: bucket,
         Key: key,
         Body: await resizedImage.clone().toBuffer(),
-        ContentType: contentType, // specify the new content type
+        ContentType: contentType,
+        CacheControl: 'public, max-age=0, must-revalidate',
       })
       .promise();
       
