@@ -42,7 +42,7 @@ export const handler: Handler<S3Event> = async (event, context) => {
             Key: resizeName ? key.slice(0, key.lastIndexOf("/") + 1) + resizeName : key,
             Body: await resizedImage.clone().resize(resize).toBuffer(),
             ContentType: contentType,
-            CacheControl: 'public, max-age=0, must-revalidate',
+            CacheControl: 'public, max-age=300, must-revalidate',
           })
           .promise();
 
@@ -56,7 +56,7 @@ export const handler: Handler<S3Event> = async (event, context) => {
         Key: key,
         Body: await resizedImage.clone().toBuffer(),
         ContentType: contentType,
-        CacheControl: 'public, max-age=0, must-revalidate',
+        CacheControl: 'public, max-age=300, must-revalidate',
       })
       .promise();
       
